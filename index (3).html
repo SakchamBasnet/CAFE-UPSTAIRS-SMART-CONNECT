@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cafe Upstairs · Connect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:oklch(17% 0.018 25);--bg-deep:oklch(13% 0.016 25);--surface:oklch(21% 0.02 25);--surface-2:oklch(25% 0.024 25);--line:oklch(32% 0.028 25);--text:oklch(94% 0.008 60);--muted:oklch(70% 0.014 40);--faint:oklch(56% 0.016 35);--neon:oklch(63% 0.245 26);--neon-soft:oklch(70% 0.2 28);--wa:oklch(72% 0.17 152);--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--ease:cubic-bezier(0.22,1,0.36,1)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%;scrollbar-width:none;-ms-overflow-style:none}
+  html::-webkit-scrollbar{display:none;width:0;height:0}
+  body{font-family:'Instrument Sans',system-ui,sans-serif;background:var(--bg-deep);color:var(--text);line-height:1.5;min-height:100dvh;-webkit-font-smoothing:antialiased;font-optical-sizing:auto;scrollbar-width:none;-ms-overflow-style:none}
+  body::-webkit-scrollbar{display:none;width:0;height:0}
+  .shell{width:100%;max-width:460px;margin:0 auto;background:radial-gradient(120% 55% at 50% -8%, oklch(from var(--neon) 28% 0.09 h / 0.55), transparent 60%),linear-gradient(var(--bg), var(--bg-deep));min-height:100dvh;padding:var(--s6) var(--s5) var(--s7);position:relative;overflow:hidden}
+  .shell::before{content:"";position:absolute;inset:0;background-image:radial-gradient(oklch(100% 0 0 / 0.02) 1px, transparent 1px);background-size:4px 4px;pointer-events:none}
+  .top{display:flex;align-items:center;justify-content:space-between;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);position:relative;z-index:2}
+  .status{display:flex;align-items:center;gap:var(--s2)}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--neon);box-shadow:0 0 8px 1px var(--neon);animation:pulse 2.4s var(--ease) infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
+  .hero{text-align:center;padding:var(--s6) 0 var(--s5);position:relative;z-index:2}
+  .mark{font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--neon-soft);margin-bottom:var(--s3)}
+  .sign{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(2.6rem,15vw,3.6rem);line-height:0.9;letter-spacing:-0.02em;color:oklch(97% 0.03 30);text-wrap:balance;text-shadow:0 0 4px oklch(from var(--neon-soft) l c h / 0.9),0 0 22px oklch(from var(--neon) l c h / 0.7),0 0 46px oklch(from var(--neon) l c h / 0.4);animation:flicker 6s steps(1) infinite}
+  .sign .up{display:block;color:var(--neon)}
+  @keyframes flicker{0%,96%,100%{opacity:1}97%{opacity:0.72}98%{opacity:1}98.6%{opacity:0.85}}
+  .tagline{margin-top:var(--s4);color:var(--muted);font-size:0.96rem;max-width:32ch;margin-left:auto;margin-right:auto;text-wrap:pretty}
+  .primary{margin:var(--s5) 0 0;position:relative;z-index:2;display:flex;flex-direction:column;gap:var(--s3)}
+  .cta{display:flex;align-items:center;gap:var(--s3);padding:13px var(--s4);border-radius:14px;text-decoration:none;color:oklch(98% 0.02 30);border:1px solid transparent;background:linear-gradient(160deg, var(--neon), var(--neon-soft) 180%);box-shadow:0 6px 20px -12px var(--neon);transition:transform .18s var(--ease),box-shadow .18s var(--ease);width:100%;font:inherit;cursor:pointer;text-align:left}
+  .cta.savecontact{background:var(--surface);border-color:var(--line);box-shadow:none;color:var(--text)}
+  .cta.savecontact .ico{background:var(--surface-2);color:var(--neon-soft)}
+  .cta .ico{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:oklch(100% 0 0 / 0.13)}
+  .cta .txt{flex:1;min-width:0}
+  .cta .k{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:1rem;display:block;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cta .s{font-size:0.78rem;color:oklch(90% 0.06 30);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+  .cta .arr{flex:none;opacity:0.85}
+  .cta:active{transform:scale(0.985)}
+  @media(hover:hover){.cta:hover{transform:translateY(-1px);box-shadow:0 10px 26px -12px oklch(from var(--neon) l c h / 1)}}
+  .stack{display:flex;flex-direction:column;gap:var(--s3);position:relative;z-index:2}
+  .eyebrow{font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin:var(--s5) 0 2px 4px}
+  .row{display:flex;align-items:center;gap:var(--s4);padding:var(--s4);border-radius:14px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--text);transition:transform .18s var(--ease),background .18s var(--ease),border-color .18s var(--ease)}
+  .row .badge{width:42px;height:42px;flex:none;display:grid;place-items:center;border-radius:11px;background:var(--surface-2);color:var(--text)}
+  .row .body{flex:1;min-width:0}
+  .row .t{font-weight:600;font-size:0.98rem;display:block}
+  .row .h{font-size:0.8rem;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .row .arr{color:var(--faint);flex:none;transition:transform .18s var(--ease),color .18s var(--ease)}
+  .row:active{transform:scale(0.99)}
+  @media(hover:hover){.row:hover{background:var(--surface-2)}.row:hover .arr{transform:translateX(3px);color:var(--neon-soft)}}
+  .row.ig .badge{background:linear-gradient(135deg,oklch(60% 0.18 30),oklch(55% 0.2 340));color:oklch(98% 0.02 320)}
+  .row.fb .badge{background:oklch(52% 0.16 255);color:oklch(98% 0.02 255)}
+  .row.tt .badge{background:oklch(20% 0.01 200);color:oklch(96% 0.01 200)}
+  .row.wa .badge{background:var(--wa);color:oklch(20% 0.03 152)}
+  .row.map .badge{background:oklch(30% 0.05 250);color:oklch(85% 0.12 250)}
+  .row.web .badge{background:var(--surface-2);color:var(--neon-soft)}
+  .row.custom .badge{background:var(--surface-2);color:var(--neon-soft)}
+  .row.x .badge{background:oklch(15% 0.01 260);color:oklch(97% 0.01 260)}
+  .row.yt .badge{background:oklch(52% 0.2 25);color:oklch(98% 0.02 30)}
+  .row.tg .badge{background:oklch(58% 0.16 235);color:oklch(97% 0.02 235)}
+  .row.email .badge{background:var(--surface-2);color:var(--neon-soft)}
+  .review{margin-top:var(--s4);display:flex;align-items:center;gap:var(--s3);padding:14px var(--s4);border-radius:14px;text-decoration:none;position:relative;z-index:2;border:1px solid oklch(from var(--neon) l c h / 0.35);background:linear-gradient(160deg, oklch(from var(--neon) l c h / 0.14), oklch(from var(--neon) l c h / 0.04))}
+  .review .stars{flex:none;display:flex;gap:2px;color:var(--neon-soft)}
+  .review .rtxt{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}
+  .review .rk{font-weight:700;font-size:0.92rem;color:var(--text)}
+  .review .rs{font-size:0.78rem;color:var(--muted)}
+  .review .arr{flex:none;color:var(--faint)}
+  .visit{margin-top:var(--s6);padding:var(--s5);border-radius:16px;border:1px solid var(--line);background:linear-gradient(var(--surface), var(--bg));position:relative;z-index:2}
+  .visit h2{font-family:'Bricolage Grotesque',sans-serif;font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--neon-soft);font-weight:600;margin-bottom:var(--s3)}
+  .visit .addr{font-size:1.02rem;font-weight:500;line-height:1.4}
+  .visit .hours{margin-top:var(--s2);color:var(--muted);font-size:0.88rem}
+  .foot{text-align:center;margin-top:var(--s6);font-size:0.74rem;color:var(--faint);letter-spacing:0.02em;position:relative;z-index:2}
+  .foot .tap{display:inline-flex;align-items:center;gap:6px;margin-bottom:var(--s3);padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:0.72rem}
+  .foot .by{color:var(--faint)}
+  .foot .by b{color:var(--neon-soft);font-weight:600;letter-spacing:0.04em}
+  .reveal{opacity:0;transform:translateY(14px);animation:rise .7s var(--ease) forwards;animation-delay:calc(var(--i,0)*70ms)}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}.sign,.dot{animation:none}}
+</style>
+</head>
+<body>
+  <main class="shell">
+    <div class="top reveal" style="--i:0"><span>Itahari · Sunsari</span><span class="status"><span class="dot"></span>Open now</span></div>
+    <header class="hero">
+      <div class="mark reveal" style="--i:1">Rooftop · Est. 2015</div>
+      <h1 class="sign reveal" style="--i:2">Cafe<span class="up">Upstairs</span></h1>
+      <p class="tagline reveal" style="--i:3">Red neon, slow conversation, and coffee made the way it should be.</p>
+    </header>
+    <nav class="primary">
+
+      <button type="button" class="cta savecontact reveal" style="--i:4" onclick="saveContact()">
+        <span class="ico"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block"><circle cx="10" cy="8" r="4"/><path d="M3 20c0-3.9 3.1-7 7-7 1.5 0 2.9.5 4 1.3M18 8v6M15 11h6"/></svg></span>
+        <span class="txt"><span class="k">Save Contact</span><span class="s">Add to your phone</span></span>
+        <span class="arr"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M4 12h16M13 5l7 7-7 7"/></svg></span>
+      </button>
+    </nav>
+    <section class="stack">
+      <p class="eyebrow reveal" style="--i:4">Connect</p>
+      <a class="row ig" style="--i:5" href="https://www.instagram.com/cafe.upstairss?igsh=MTg1Yzg0Y2Mwa3Bubw==" onclick="trackClick('link_ig')">
+        <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="display:block"><rect x="2.5" y="2.5" width="19" height="19" rx="5.2" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.25" fill="currentColor"/></svg></span>
+        <span class="body"><span class="t">Instagram</span><span class="h">@cafe.upstairss</span></span>
+        <span class="arr"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+      <a class="row fb" style="--i:6" href="https://www.facebook.com/cafeupstairs" onclick="trackClick('link_fb')">
+        <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="display:block"><path fill="currentColor" d="M14.5 8.5V6.9c0-.8.2-1.2 1.3-1.2H17V3.1c-.3 0-1.3-.1-2.4-.1-2.4 0-3.9 1.4-3.9 4v1.5H8.3v2.8h2.4V19h3V11.3h2.3l.4-2.8h-2.7z"/></svg></span>
+        <span class="body"><span class="t">Facebook</span><span class="h">/cafeupstairs</span></span>
+        <span class="arr"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+      <a class="row tt" style="--i:7" href="https://tiktok.com/@cafe.upstairs" onclick="trackClick('link_tt')">
+        <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="display:block"><path fill="currentColor" d="M16.9 2.8c.3 2.2 1.6 3.7 3.7 4v2.7c-1.3 0-2.6-.4-3.7-1.1v5.9c0 3-2.3 5.4-5.3 5.4s-5.3-2.4-5.3-5.4 2.4-5.2 5.5-5.1v2.8c-.3-.1-.6-.1-.9-.1-1.4 0-2.4 1.1-2.4 2.4s1.1 2.4 2.4 2.4 2.5-1 2.5-2.5V2.8h3z"/></svg></span>
+        <span class="body"><span class="t">TikTok</span><span class="h">@cafe.upstairs</span></span>
+        <span class="arr"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+      <a class="row wa" style="--i:8" href="https://wa.me/9779808046842" onclick="trackClick('link_wa')">
+        <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4 8.6 8.6 0 0 1-4-1L3 20l1.2-4.9A8.4 8.4 0 1 1 21 11.5z"/></svg></span>
+        <span class="body"><span class="t">WhatsApp</span><span class="h">+977 980-8046842</span></span>
+        <span class="arr"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+      <a class="row map" style="--i:9" href="https://maps.google.com/?q=Cafe+Upstairs+Itahari" onclick="trackClick('link_map')">
+        <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg></span>
+        <span class="body"><span class="t">Directions</span><span class="h">Open in Google Maps</span></span>
+        <span class="arr"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+      <a class="row web" style="--i:10" href="https://cafeupstairsv2.netlify.app/" onclick="trackClick('link_web')">
+        <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 2.8 2.8 15.2 0 18M12 3c-2.8 2.8-2.8 15.2 0 18"/></svg></span>
+        <span class="body"><span class="t">Website</span><span class="h">cafeupstairs.com</span></span>
+        <span class="arr"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+    </section>
+    <a class="review reveal" style="--i:11" href="https://www.google.com/search?sca_esv=fcf7c75390717087&amp;sxsrf=APpeQnuwtxv9ai_rHNF1wrYqhDmA2h2O-g:1784021683114&amp;q=CAFE+UPSTAIRS&amp;si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_3133ye4ubWjDwSI0hBQYMek6Vd7LvI-sqrqTi0NDfIo4K6ZkkhcPIfVrzIIEFjhJjSHjGiRvv35D_tUtO6AwuHUdlm_&amp;sa=X&amp;ved=2ahUKEwi738XV7tGVAxXbTGwGHQ4GIuYQrrQLegQIIRAA&amp;biw=1440&amp;bih=731&amp;dpr=1#lrd=0x39ef6c6e4ce098d9:0x76fd0b5a84449dc0,3,,,," onclick="trackClick('google_review')">
+      <span class="stars"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" style="display:block"><path fill="currentColor" d="M12 2.7l2.7 6 6.6.6-5 4.4 1.5 6.5-5.8-3.5-5.8 3.5 1.5-6.5-5-4.4 6.6-.6z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" style="display:block"><path fill="currentColor" d="M12 2.7l2.7 6 6.6.6-5 4.4 1.5 6.5-5.8-3.5-5.8 3.5 1.5-6.5-5-4.4 6.6-.6z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" style="display:block"><path fill="currentColor" d="M12 2.7l2.7 6 6.6.6-5 4.4 1.5 6.5-5.8-3.5-5.8 3.5 1.5-6.5-5-4.4 6.6-.6z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" style="display:block"><path fill="currentColor" d="M12 2.7l2.7 6 6.6.6-5 4.4 1.5 6.5-5.8-3.5-5.8 3.5 1.5-6.5-5-4.4 6.6-.6z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" style="display:block"><path fill="currentColor" d="M12 2.7l2.7 6 6.6.6-5 4.4 1.5 6.5-5.8-3.5-5.8 3.5 1.5-6.5-5-4.4 6.6-.6z"/></svg></span>
+      <span class="rtxt"><span class="rk">Leave us a Google Review</span><span class="rs">Loved your visit? Tell others.</span></span>
+      <span class="arr"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+    </a>
+    <footer class="foot reveal">
+      <span class="tap"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M6 8a8 8 0 0 1 0 8M9.5 10a4 4 0 0 1 0 4"/><circle cx="17" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg> Tap · Scan · Connect</span>
+      <p class="by">Powered by <b>SAKX</b></p>
+    </footer>
+  </main>
+  <script>
+    const CID="cal2qes";
+    const CONTACT={"on":true,"name":"Cafe Upstairs","org":"Cafe Upstairs · Itahari","phone":"+9779808046842","email":""};
+    function trackClick(k){ try{ fetch('https://api.countapi.xyz/hit/smartconnect-'+CID+'/'+k,{mode:'cors'}).catch(function(){}); }catch(e){} }
+    function saveContact(){
+      trackClick('vcard');
+      const lines=['BEGIN:VCARD','VERSION:3.0'];
+      lines.push('FN:'+(CONTACT.name||''));
+      if(CONTACT.org) lines.push('ORG:'+CONTACT.org);
+      if(CONTACT.phone) lines.push('TEL;TYPE=CELL:'+CONTACT.phone);
+      if(CONTACT.email) lines.push('EMAIL:'+CONTACT.email);
+      lines.push('URL:'+location.href,'END:VCARD');
+      const blob=new Blob([lines.join('\r\n')],{type:'text/vcard'});
+      const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+      a.download=(CONTACT.name||'contact').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'.vcf';
+      document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){ URL.revokeObjectURL(a.href); },1000);
+    }
+  </script>
+</body>
+</html>
